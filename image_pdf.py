@@ -3,21 +3,25 @@ import convert
 import tkinter as tk
 from tkinter import filedialog
 
+# 入力フォルダを選択する
 def select_input_folder():
     input_folder_path = filedialog.askdirectory()
     input_folder_entry.delete(0, tk.END)
     input_folder_entry.insert(0, input_folder_path)
 
+# 出力フォルダを選択する
 def select_output_folder():
     output_folder_path = filedialog.askdirectory()
     output_folder_entry.delete(0, tk.END)
     output_folder_entry.insert(0, output_folder_path)
 
+# ボタン「変換開始」: 画像をPDFに変換する
 def convert_images_to_pdf():
 
-    input_folder_path = input_folder_entry.get()
-    output_folder_path = output_folder_entry.get()
+    input_folder_path = input_folder_entry.get()    # INPUT
+    output_folder_path = output_folder_entry.get()  # OUTPUT
 
+    # 空白でないかチェック
     if(input_folder_path == ""):
         write_debug("入力フォルダを指定してください。")
         return False
@@ -25,6 +29,7 @@ def convert_images_to_pdf():
         write_debug("入力フォルダが存在しません。")
         return False
 
+    # 空白でないかチェック
     if(output_folder_path == ""):
         write_debug("出力フォルダを指定してください。")
         return False
@@ -50,7 +55,7 @@ def write_debug(text):
     text_box.see(tk.END)
 
 root = tk.Tk()
-root.title("Image to PDF Converter")
+root.title("jpg to pdf converter")
 
 input_folder_label = tk.Label(root, text="入力フォルダ:")
 input_folder_label.grid(row=0, column=0, padx=5, pady=5)

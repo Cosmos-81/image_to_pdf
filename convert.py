@@ -1,6 +1,15 @@
 from PIL import Image
 import os
+import image_pdf
 
+# 書き込み中のファイル名をデバッグ画面に出力する
+def debug_write_file_name(file_path):
+
+    # ファイル名を取得
+    file_name = os.path.basename(file_path)
+    image_pdf.write_debug(f'書き込み中: {file_name}')
+
+# 画像をPDFに変換する
 def image_to_pdf(input_folder_path, output_folder_path):
 
     # フォルダ内にjpgファイルが存在しない場合は処理を終了
@@ -23,6 +32,7 @@ def image_to_pdf(input_folder_path, output_folder_path):
         img = Image.open(file_path)
         if img.mode == "RGBA":
             img = img.convert("RGB")
+            debug_write_file_name(file_path)    
         images.append(img)
     
     try:
